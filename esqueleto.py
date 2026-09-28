@@ -45,7 +45,7 @@ def procesar_venta(codigo,cantidad):
     "ganancia": ganancia
     })
 
-    if datos.inventario_actual[codigo]["Stock"] < datos.UMBRAL_STOCK:
+    if datos.inventario_actual[codigo]["Stock"] < datos.UMBRAL_DE_STOCK:
         return "Se necesita reponer Stock"
     else:
         return "Quedan {cantidad} de producto disponibles"
@@ -58,6 +58,22 @@ def procesar_venta(codigo,cantidad):
         return "Venta exitosa. ALERTA: Se necesita reponer stock de este perfume."
     else:
         return f"Venta exitosa. Quedan {datos.inventario_actual[codigo]['Stock']} unidades disponibles."
+
+
+def cierre_caja():
+
+    total_ingreso= 0
+    total_ganancia= 0
+    articulos_vendidos= 0
+
+    for venta in datos.ventas_sesion:
+        total_ingreso += venta["ingreso"]
+        total_ganancia += venta["ganancia"]
+        articulos_vendidos += venta["cantidad"]
+        
+    return total_ingreso, total_ganancia, articulos_vendidos
+
+
 
 
 
