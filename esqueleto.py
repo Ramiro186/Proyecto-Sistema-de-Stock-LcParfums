@@ -15,6 +15,18 @@ def cargar_datos ():
     except FileNotFoundError:
         pass
 
+def guardar_datos():
+    # Abrimos el archivo en modo escritura ("w" de write)
+    archivo = open(datos.ARCHIVO_BD, "w")
+    
+    # Volcamos el diccionario de la memoria hacia el archivo JSON
+    json.dump(datos.inventario_actual, archivo, indent=4)
+    
+    # Cerramos el archivo para proteger los datos
+    archivo.close()
+
+
+
 
 def procesar_venta(codigo,cantidad):
 
@@ -45,16 +57,12 @@ def procesar_venta(codigo,cantidad):
     "ganancia": ganancia
     })
 
-    if datos.inventario_actual[codigo]["Stock"] < datos.UMBRAL_DE_STOCK:
-        return "Se necesita reponer Stock"
-    else:
-        return "Quedan {cantidad} de producto disponibles"
 
     # Guardar los cambios físicos en el JSON
     guardar_datos()
 
     # Evaluamos el stock restante para dar el aviso correcto
-    if datos.inventario_actual[codigo]["Stock"] < datos.UMBRAL_STOCK:
+    if datos.inventario_actual[codigo]["Stock"] < datos.UMBRAL_DE_STOCK:
         return "Venta exitosa. ALERTA: Se necesita reponer stock de este perfume."
     else:
         return f"Venta exitosa. Quedan {datos.inventario_actual[codigo]['Stock']} unidades disponibles."
