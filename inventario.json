@@ -4,7 +4,7 @@
         "marca": "Lattafa",
         "precio_venta": 29000,
         "costo_compra": 13000,
-        "Stock": 1
+        "Stock": 0
     },
     "CDN": {
         "nombre": "Club de Nuit Intense",

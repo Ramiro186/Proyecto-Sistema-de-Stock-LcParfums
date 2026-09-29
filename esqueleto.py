@@ -81,8 +81,21 @@ def cierre_caja():
         
     return total_ingreso, total_ganancia, articulos_vendidos
 
-
-
+def reponer_stock(abreviatura, cantidad_nueva):
+    # 1. Validar que el perfume exista en el catálogo
+    if abreviatura not in datos.inventario_actual:
+        return "Error: Esa abreviatura no existe en el catálogo."
+    
+    # 2. Sumar la nueva cantidad al stock existente
+    # (El operador += es un atajo para x = x + y)
+    datos.inventario_actual[abreviatura]["Stock"] += cantidad_nueva
+    
+    # 3. Guardar los cambios físicos en el disco duro (JSON)
+    guardar_datos()
+    
+    # 4. Retornar el aviso de éxito
+    nuevo_stock = datos.inventario_actual[abreviatura]["Stock"]
+    return f"Éxito: Se agregaron {cantidad_nueva} unidades. El nuevo stock de {abreviatura} es {nuevo_stock}."
 
 
     

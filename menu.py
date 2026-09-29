@@ -8,7 +8,8 @@ while True:
     print("==========MENU INTERACTIVO==========")
     print("1- Cargar Venta")
     print("2- Cierre de caja")
-    print("3- Salir")
+    print("3- Reponer Stock")
+    print("4- Salir")
 
     try:
         # El try vigila esta línea crítica
@@ -28,6 +29,19 @@ while True:
             print(f"Resumen del día ------> Ingresos: {ingresos} | Ganancias: {ganancias} | Artículos vendidos: {articulos}")
 
         elif opcion == 3:
+            abreviatura = input("Ingrese la abreviatura del perfume a reponer: ")
+        
+            try:
+                cantidad = int(input("Ingrese la cantidad de unidades que entraron: "))
+            
+                # Llamamos a la nueva función del esqueleto
+                mensaje = esqueleto.reponer_stock(abreviatura, cantidad)
+                print(mensaje)
+            
+            except ValueError:
+                print("Error: La cantidad a reponer debe ser un número entero.")
+
+        elif opcion == 4:
             print("Salida confirmada. Nos vemos!!!")
             break
             
