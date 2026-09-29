@@ -98,6 +98,37 @@ def reponer_stock(abreviatura, cantidad_nueva):
     return f"Éxito: Se agregaron {cantidad_nueva} unidades. El nuevo stock de {abreviatura} es {nuevo_stock}."
 
 
+def buscar_perfume(busqueda):
+    # 1. Guardamos la búsqueda normalizada
+    termino = busqueda.strip().upper()
+    
+    lista_perfumes = []
+    
+    # 2. Usamos .items() para tener la abreviatura y los datos internos al mismo tiempo
+    for abreviatura, detalles in datos.inventario_actual.items():
+        
+        # 3. Extraemos el nombre real del diccionario y lo pasamos a mayúsculas
+        nombre_real = detalles["nombre"].upper()
+        marca_real = detalles["marca"].upper()
+        
+        # 4. Condicional: Si el 'termino' está en el nombre real O en la marca real...
+        if termino in nombre_real or termino in marca_real:
+            
+            # 5. Armamos un texto con los datos y lo metemos a nuestra lista
+            texto = f"[{abreviatura}] - {detalles['nombre']} | Marca: {detalles['marca']} | Stock: {detalles['Stock']}"
+            lista_perfumes.append(texto)
+            
+    # 6. Al salir del bucle, evaluamos si la lista quedó vacía o si encontramos algo
+    if len(lista_perfumes) == 0:
+        return "No se encontraron coincidencias."
+    else:
+        # La función .join() une todos los elementos de la lista usando saltos de línea (\n)
+        return "\n".join(lista_perfumes)
+
+
+
+
+
     
 
 

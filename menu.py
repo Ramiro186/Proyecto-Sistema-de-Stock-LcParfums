@@ -9,7 +9,8 @@ while True:
     print("1- Cargar Venta")
     print("2- Cierre de caja")
     print("3- Reponer Stock")
-    print("4- Salir")
+    print("4- Buscar perfume")
+    print("5- Salir")
 
     try:
         # El try vigila esta línea crítica
@@ -42,6 +43,12 @@ while True:
                 print("Error: La cantidad a reponer debe ser un número entero.")
 
         elif opcion == 4:
+            perfume= input("Ingrese nombre del perfume (Ej. Lattafa):")
+
+            mensaje_2= esqueleto.buscar_perfume(perfume)
+            print(mensaje_2)
+
+        elif opcion == 5:
             print("Salida confirmada. Nos vemos!!!")
             break
             
