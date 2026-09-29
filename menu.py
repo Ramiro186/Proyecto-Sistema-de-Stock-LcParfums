@@ -43,7 +43,7 @@ while True:
                 print("Error: La cantidad a reponer debe ser un número entero.")
 
         elif opcion == 4:
-            perfume= input("Ingrese nombre del perfume (Ej. Lattafa):")
+            perfume= input("Ingrese marca del perfume (Ej. Lattafa):")
 
             mensaje_2= esqueleto.buscar_perfume(perfume)
             print(mensaje_2)
